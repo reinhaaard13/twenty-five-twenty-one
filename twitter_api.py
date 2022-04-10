@@ -31,7 +31,7 @@ class Tweepy:
   def postTweetWithImage(self, text, imagePath):
     if self.recent_tweet:
       return self.T.update_status_with_media(text, imagePath, in_reply_to_status_id=self.recent_tweet.id_str)
-    title = "Twenty Five Twenty One Quotes\n#2521 #twentyfivetwentyone\n\nA BOT THREAD every 30 minutes by @reicehhh"
+    title = "✨Twenty Five Twenty One Quotes✨\n#kimtaeri #namjoohyuk #twentyfivetwentyone\n\A thread by a bot by @reicehhh\n(every 30 minutes)"
     return self.T.update_status_with_media(title, imagePath)
   
   def mediaUpload(self, imagePaths):

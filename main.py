@@ -19,7 +19,7 @@ def main():
 
   sched = BlockingScheduler(timezone="Asia/Jakarta")
 
-  sched.add_job(twitter_post, 'interval', seconds=10, args=[bot])
+  sched.add_job(twitter_post, 'interval', minutes=30, args=[bot])
   sched.print_jobs()
 
   sched.start()
