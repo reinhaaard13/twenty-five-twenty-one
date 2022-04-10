@@ -78,6 +78,7 @@ def twitter_post(bot):
   # medias = bot.mediaUpload(filename)
 
   quote = get_one_quote()
+  print(f"Posting {filename} dengan quote: {quote}")
   quote = quote.split('–')
   quote_tweet = f"{quote[0]}\n\n–{quote[1]}"
 
