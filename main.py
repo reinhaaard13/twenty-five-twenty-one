@@ -6,13 +6,13 @@ from twitter_api import Tweepy, twitter_post
 from quote_scraping import get_quotes, saveToCsv
 
 def main():
-  # # Scrape the quotes
-  # quotes = get_quotes()
-  # saveToCsv(quotes)
+  # Scrape the quotes
+  quotes = get_quotes()
+  saveToCsv(quotes)
 
-  # # Scrape the images
-  # links = get_all_links()
-  # download_images(links)
+  # Scrape the images
+  links = get_all_links()
+  download_images(links)
 
   # Upload the images to Twitter
   bot = Tweepy()
