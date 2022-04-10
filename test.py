@@ -7,7 +7,7 @@ with open('quotes.csv', 'r', encoding='utf-8') as f:
   updated_quotes = []
   for line in reader:
     try:
-      updated_quotes.append(line[0])
+      updated_quotes.append(line[0]) if line[0].startswith('“') else None
     except IndexError:
       continue
 
@@ -15,7 +15,7 @@ with open('quotes.csv', 'w', encoding='utf-8') as f:
   writer = csv.writer(f, delimiter='\n')
   writer.writerow(updated_quotes)
 
-print(quote[0].split('–'))
+# print(quote[0].split('–'))
 
 # import os
 

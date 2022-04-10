@@ -61,7 +61,7 @@ def get_one_quote():
     updated_quotes = []
     for line in reader:
       try:
-        updated_quotes.append(line[0])
+        updated_quotes.append(line[0]) if line[0].startswith('“') else None
       except IndexError:
         continue
 
@@ -80,7 +80,7 @@ def twitter_post(bot):
   quote = get_one_quote()
   print(f"Posting {filename} dengan quote: {quote}")
   quote = quote.split('–')
-  quote_tweet = f"{quote[0]}\n\n–{quote[1]}"
+  quote_tweet = f"{quote[0]}\n\n–{quote[1]}\n#2521quotes"
 
   bot.recent_tweet = bot.postTweetWithImage(quote_tweet, filename)
 
