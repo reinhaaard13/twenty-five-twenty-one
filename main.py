@@ -19,6 +19,7 @@ def main():
 
   # Upload the images to Twitter
   bot = Tweepy()
+  twitter_post(bot)
 
   sched = BlockingScheduler(timezone="Asia/Jakarta")
 
