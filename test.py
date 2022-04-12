@@ -1,19 +1,26 @@
-import csv
+# import csv
 
-with open('quotes.csv', 'r', encoding='utf-8') as f:
-  reader = csv.reader(f, delimiter='\n')
-  quote = next(reader)
+# with open('quotes.csv', 'r', encoding='utf-8') as f:
+#   reader = csv.reader(f, delimiter='\n')
+#   quote = next(reader)
   
-  updated_quotes = []
-  for line in reader:
-    try:
-      updated_quotes.append(line[0]) if line[0].startswith('“') else None
-    except IndexError:
-      continue
+#   updated_quotes = []
+#   for line in reader:
+#     try:
+#       updated_quotes.append(line[0]) if line[0].startswith('“') else None
+#     except IndexError:
+#       continue
 
-with open('quotes.csv', 'w', encoding='utf-8') as f:
-  writer = csv.writer(f, delimiter='\n')
-  writer.writerow(updated_quotes)
+# with open('quotes.csv', 'w', encoding='utf-8') as f:
+#   writer = csv.writer(f, delimiter='\n')
+#   writer.writerow(updated_quotes)
+
+import json
+
+with open('recent_tweet.json', 'r') as f:
+  recent_tweet = json.load(f)['recent_id_str']
+
+print(recent_tweet)
 
 # print(quote[0].split('–'))
 

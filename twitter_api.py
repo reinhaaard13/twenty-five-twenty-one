@@ -1,6 +1,7 @@
 import tweepy
 import csv
 import os
+import json
 
 from constants import API_KEY, API_SECRET_KEY, ACCESS_TOKEN, ACCESS_SECRET_TOKEN
 
@@ -8,6 +9,10 @@ class Tweepy:
   def __init__(self):
     self.T = tweepy.API(self.auth())
     self.recent_tweet = None
+    # check if there is recent_tweet.json
+    if os.path.isfile('recent_tweet.json'):
+      with open('recent_tweet.json', 'r') as f:
+        recent_tweet = json.load(f)['recent_id_str']
 
   def auth(self):
     auth = tweepy.OAuthHandler(API_KEY, API_SECRET_KEY)
@@ -84,6 +89,9 @@ def twitter_post(bot):
 
   bot.recent_tweet = bot.postTweetWithImage(quote_tweet, filename)
   print(f"{remaining} quote(s) remaining")
+
+  with open('recent_tweet.json', 'w') as f:
+    json.dump({'recent_id_str': bot.recent_tweet.id_str}, f)
 
   delete_image(filename) # Delete image after upload
 
