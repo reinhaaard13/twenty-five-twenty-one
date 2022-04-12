@@ -12,7 +12,7 @@ class Tweepy:
     # check if there is recent_tweet.json
     if os.path.isfile('recent_tweet.json'):
       with open('recent_tweet.json', 'r') as f:
-        self.recent_tweet = json.load(f)
+        self.recent_tweet = json.load(f)['id_str']
 
   def auth(self):
     auth = tweepy.OAuthHandler(API_KEY, API_SECRET_KEY)
@@ -84,11 +84,11 @@ def twitter_post(bot):
   quote = quote.split('–')
   quote_tweet = f"{quote[0]}\n\n–{quote[1]}\n#2521quotes"
 
-  bot.recent_tweet = bot.postTweetWithImage(quote_tweet, filename)
+  bot.recent_tweet = bot.postTweetWithImage(quote_tweet, filename).id_str
   print(f"{remaining} quote(s) remaining")
 
   with open('recent_tweet.json', 'w') as f:
-    json.dump(bot.recent_tweet, f)
+    json.dump(bot.recent_tweet.id_str, f)
 
   delete_image(filename) # Delete image after upload
 
