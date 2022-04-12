@@ -17,8 +17,13 @@
 
 import json
 
-with open('recent_tweet.json', 'r') as f:
-  recent_tweet = json.load(f)['recent_id_str']
+# with open('recent_tweet.json', 'r') as f:
+#   recent_tweet = json.load(f)['recent_id_str']
+
+recent_tweet = { "id_str": '151231231231231239'}
+# 1513583793319337989
+with open('recent_tweet.json', 'w') as f:
+    json.dump({'recent_id_str': recent_tweet['id_str']}, f)
 
 print(recent_tweet)
 

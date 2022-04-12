@@ -12,7 +12,7 @@ class Tweepy:
     # check if there is recent_tweet.json
     if os.path.isfile('recent_tweet.json'):
       with open('recent_tweet.json', 'r') as f:
-        recent_tweet = json.load(f)['recent_id_str']
+        self.recent_tweet = json.load(f)
 
   def auth(self):
     auth = tweepy.OAuthHandler(API_KEY, API_SECRET_KEY)
@@ -43,12 +43,6 @@ class Tweepy:
     medias = []
     medias.append(self.T.media_upload(imagePaths))
     return medias
-  
-  def postTweetWithMultipleImage(self, text, media_ids_string, reply_to):
-    if reply_to:
-      return self.T.update_status(status=text, in_reply_to_status_id=reply_to, media_ids=media_ids_string)
-    else:
-      return self.T.update_status(status=text, media_ids=media_ids_string)
 
 def pick_image():
   filename = os.listdir("images")[0]
@@ -91,7 +85,7 @@ def twitter_post(bot):
   print(f"{remaining} quote(s) remaining")
 
   with open('recent_tweet.json', 'w') as f:
-    json.dump({'recent_id_str': bot.recent_tweet.id_str}, f)
+    json.dump(bot.recent_tweet, f)
 
   delete_image(filename) # Delete image after upload
 
