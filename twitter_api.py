@@ -88,7 +88,7 @@ def twitter_post(bot):
   print(f"{remaining} quote(s) remaining")
 
   with open('recent_tweet.json', 'w') as f:
-    json.dump(bot.recent_tweet.id_str, f)
+    json.dump({'id_str' : bot.recent_tweet}, f)
 
   delete_image(filename) # Delete image after upload
 
