@@ -69,7 +69,7 @@ def get_one_quote():
     writer = csv.writer(f, delimiter='\n')
     writer.writerow(updated_quotes)
 
-  return quote[0]
+  return quote[0], len(updated_quotes)
 
 def twitter_post(bot):
   filename = pick_image()
@@ -77,12 +77,13 @@ def twitter_post(bot):
   # === Upload media ===
   # medias = bot.mediaUpload(filename)
 
-  quote = get_one_quote()
+  quote, remaining = get_one_quote()
   print(f"Posting {filename} dengan quote: {quote}")
   quote = quote.split('–')
   quote_tweet = f"{quote[0]}\n\n–{quote[1]}\n#2521quotes"
 
   bot.recent_tweet = bot.postTweetWithImage(quote_tweet, filename)
+  print(f"{remaining} quote(s) remaining")
 
   delete_image(filename) # Delete image after upload
 
